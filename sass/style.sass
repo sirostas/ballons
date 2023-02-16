@@ -1,0 +1,135 @@
+*, ::after, ::before
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+html
+    font-size: 62.5% //10px, но чтобы пользователь мог в браузере увеличивать шрифт
+
+body
+    font-family: 'Roboto', sans-serif 
+    font-weight: 400
+    color: #777777
+    font-size: 1.6rem
+    letter-spacing: .2rem
+    padding: 5rem
+    background-color: white
+
+.container
+    background-color: #F7F7F7
+    
+.header
+    position: relative
+    height: 95vh
+    background: linear-gradient(90.05deg, rgba(186, 133, 84, 0.7) 0.03%, rgba(1, 1, 1, 0.7) 99.94%), url(../img/pexels2.png) center / cover no-repeat
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)//значения, которые задаются 2-мя осями, с помощью него мы можем обрещать элементы
+    &__logo
+        position: absolute
+        left: 5rem
+        top: 5rem
+        height: 7rem
+        width: 5.6rem
+    &__box
+        position: absolute
+        top: 40%
+        left: 50%
+        transform: translate(-50%, -50%) //для выравнивания элемента(текста) по центру
+        width: 100% //для позиционирования текста по центру
+        text-align: center // центр...
+
+.title-first
+    color: #FFFFFF
+    &__main
+        display: block //чтобы текст переводился на новую строку
+        font-weight: 800
+        font-size: 5rem
+        line-height: 6rem
+        letter-spacing: 1rem
+        text-transform: uppercase //чтобы текств любом случае был большими буквами
+        margin-bottom: 1rem
+        animation-name: leftToRight //ввод кейфрейма
+        animation-duration: 1s  //длительность кейфрейма
+        animation-delay: 1s //задержка анимации
+        animation-timing-function: ease
+        backface-visibility: hidden //позволяет избавиться от подтормаживаний
+    &__secondary
+        display: block //чтобы текст переводился на новую строку
+        font-weight: 100
+        font-size: 4rem
+        line-height: 4.8rem
+        letter-spacing: .5rem
+        animation-name: RightToLeft
+        animation-duration: 1s
+        animation-delay: 1s
+        animation-timing-function: ease
+        backface-visibility: hidden
+        margin-bottom: 6.5rem
+
+.btn
+    &:link, &:visited
+        text-transform: uppercase //чобы были буквы заглавные
+        text-decoration: none //убираем визуальные ээфекты
+        color: #777777
+        padding: 1.5rem 4rem
+        background: white
+        border-radius: 50px
+        display: inline-block //чтобы не залезало на текст сверху
+        transition: all .3s  //можем указать конкретное свойство, на которое оно будет влиять и количество времени   
+        position: relative //для абсолютного позиционирования
+        font-size: 2rem
+    &:hover //при наведении
+        transform: translateY(-4px) //чтобы приподнять кнопку вверх
+        box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.3)) //появляется тень
+        &::after
+            opacity: 0 // чтобы он плавно увеличивался в размерах
+            transform: scaleX(1.5) scaleY(1.7)//для увеличения кнопки
+    &:active //при нажатии
+        transform: translateY(-2px) 
+        box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.1))
+    &::after //псевдоэлемент
+        content: '' //обязательный класс, для того, чтобы псевдоэлемент сработал
+        background: white
+        width: 100% //для создания белого фона
+        height: 100%
+        border-radius: 5rem
+        display: inline-block //должен быть такой же как и родительский элемент
+        position: absolute //для позиционирования элемента
+        top: 0
+        left: 0
+        z-index: -1
+        transition: all .4s
+    &_animated
+        animation: BtnToUp .5s ease-out .7s //кейфрейм, время выползания, как, время задержки
+        animation-fill-mode: backwards //чтобы кнопка выплывала и появлялась из неоткуда
+
+
+@keyframes BtnToUp
+    0%
+        opacity: 0
+        transform: translateY(5rem)
+    100%
+        opacity: 1
+        transform: translateY(0px)
+
+@keyframes leftToRight
+    0%
+        opacity: 0
+        transform: translateX(-10rem)
+    80%
+        transform: translateX(1rem)
+    100%
+        opacity: 1
+        transform: translateX(0px)
+
+@keyframes RightToLeft
+    0%
+        opacity: 0
+        transform: translateX(10rem)
+    80%
+        transform: translateX(-1rem)
+    100%
+        opacity: 1
+        transform: translateX(0px)
+
+
+        
